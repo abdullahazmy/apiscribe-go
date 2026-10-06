@@ -1,5 +1,9 @@
 # apiscribe (Go)
 
+<p align="center">
+  <img src="docs/welcome.png" alt="The apiscribe welcome screen: the logo, model and project on the left, getting-started tips and docs status on the right" width="820">
+</p>
+
 An AI CLI built on Claude that writes API documentation for **frontend and mobile developers**, shipped as a single binary. Run it in your backend repo and it reads the code (routes, controllers, DTOs, validators, middleware, error handlers), then writes docs that show every endpoint's expected request, its responses, and its errors. Give it a screenshot of an app screen and it tells you which APIs that screen should call.
 
 This is the Go version of [apiscribe](https://github.com/abdullahazmy/apiscribe). There is also a [Rust version](https://github.com/abdullahazmy/apiscribe-rs). All three share the same prompts, commands, and output.
