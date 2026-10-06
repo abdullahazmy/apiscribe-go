@@ -4,7 +4,6 @@ package ui
 import (
 	"fmt"
 	"os"
-	"strings"
 	"sync"
 	"time"
 
@@ -74,19 +73,6 @@ func (s *Spinner) Stop() {
 	close(s.stop)
 	<-s.done
 	s.stop, s.done = nil, nil
-}
-
-// Banner prints the session header.
-func Banner(projectRoot, docsDir, model string) {
-	line := Accent(strings.Repeat("─", 58))
-	fmt.Println(line)
-	fmt.Printf("%s %s %s\n", Accent("✻"), Bold("apiscribe"), Dim("— API docs for frontend & mobile teams, powered by Claude"))
-	fmt.Println(Dim("  project: " + projectRoot))
-	fmt.Println(Dim("  docs:    " + docsDir))
-	fmt.Println(Dim("  model:   " + model))
-	fmt.Println(line)
-	fmt.Println(Dim("  /scan to document every endpoint · /image to map a screen to APIs · /help"))
-	fmt.Println()
 }
 
 // ToolLine prints a tool invocation.

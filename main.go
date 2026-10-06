@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"runtime/debug"
 	"strings"
 
 	"github.com/anthropics/anthropic-sdk-go"
@@ -22,6 +23,10 @@ import (
 var version = "dev" // set by -ldflags at release time
 
 func main() {
+	// `go install` builds carry the module version instead of -ldflags.
+	if info, ok := debug.ReadBuildInfo(); ok && version == "dev" && strings.HasPrefix(info.Main.Version, "v") {
+		version = strings.TrimPrefix(info.Main.Version, "v")
+	}
 	var opts config.Options
 	resolve := func() *config.Config {
 		cfg, err := config.Resolve(opts)
@@ -54,7 +59,7 @@ func main() {
 		SilenceErrors: true,
 		Args:          cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return repl.Run(resolve())
+			return repl.Run(resolve(), version)
 		},
 	}
 	pf := root.PersistentFlags()

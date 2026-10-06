@@ -275,9 +275,9 @@ func allImages(paths []string) bool {
 }
 
 // Run starts the interactive session.
-func Run(cfg *config.Config) error {
+func Run(cfg *config.Config, version string) error {
 	s := &session{cfg: cfg, agent: agent.New(cfg)}
-	ui.Banner(cfg.ProjectRoot, cfg.DocsDir, cfg.Model)
+	ui.PrintBanner(ui.BannerInfo{Version: version, Model: cfg.Model, Effort: cfg.Effort, ProjectRoot: cfg.ProjectRoot, DocsDir: cfg.DocsDir})
 
 	line := liner.NewLiner()
 	defer line.Close()
