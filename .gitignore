@@ -1,0 +1,4 @@
+apiscribe
+/dist/
+api-docs/
+.env
